@@ -14,7 +14,7 @@ const Statistics = ({ contacts }) => {
 
   return (
     <section className={classes.container}>
-      <h4>Statistic</h4>
+      <h2>Statistic</h2>
       <GenderStatistic contacts={contacts} />
       <NationStatistic data={contacts} />
     </section>

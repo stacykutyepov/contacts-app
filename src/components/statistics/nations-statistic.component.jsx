@@ -21,7 +21,7 @@ const NationsStatistic = ({ data }) => {
       <Grid container spacing={3}>
         {Object.entries(data.nat).map(([key, value]) => {
           return (
-            <Grid item xs={12} sm={6} md={4} lg={2}>
+            <Grid key={key} item xs={12} sm={6} md={4} lg={2}>
               <span className={classes.span}>
                 <strong>{`${key}: `}</strong>
                 {`${value} contacts`}
