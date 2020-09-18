@@ -10,10 +10,26 @@ export const StyledTableCell = withStyles((theme) => ({
 
 export const useStyles = makeStyles({
     table: {
-        minWidth: 400,
+        minWidth: '90vw',
     },
     paginationCount: {
         padding: 0,
     },
-
+    card: {
+        margin: "10px",
+        textAlign: 'left',
+        minHeight: '440px'
+    },
+    media: {
+        height: "180px"
+    },
+    cardContent: {
+        height: "260px",
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between'
+    },
+    natContainer: {
+        marginTop: "20px"
+    }
 });

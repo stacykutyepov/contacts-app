@@ -1,11 +1,11 @@
-import PropTypes from "prop-types";
 import React, { useState } from "react";
+import { StyledTableCell, useStyles } from "./table.styles";
 import { NATIONALITIES } from "../../constants/nationalities";
+
 import NationPreview from "../nation-preview/nation-preview.component";
 import CopyData from "../copy-data/copy-data.component";
-
 import PaginationActions from "./pagination-action.component";
-import { StyledTableCell, useStyles } from "./table.styles";
+
 import {
   Table,
   TableBody,
@@ -17,20 +17,27 @@ import {
   TableRow,
   Paper,
 } from "@material-ui/core";
+import Avatar from "@material-ui/core/Avatar";
 
 const PaginatedTable = ({ data }) => {
   const classes = useStyles();
   const [currentPage, setCurrentPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  const handleChangePage = (event, newPage) => {
-    setCurrentPage(newPage);
-  };
+  const handleChangePage = (event, newPage) => setCurrentPage(newPage);
 
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setCurrentPage(0);
   };
+
+  const truncateEmail = (email) => email.slice(0, 17);
+  const phoneInt = (phone) => phone.split(/\D/).join("");
+  const copyToClipboard = (data) => navigator.clipboard.writeText(data);
+
+  //Formating date of birth to mm-dd-yyyy
+  const convertDOB = (dob) =>
+    dob.date.slice(5, 10).split("-").join("/") + "/" + dob.date.slice(0, 4);
 
   return (
     <TableContainer component={Paper}>
@@ -54,27 +61,56 @@ const PaginatedTable = ({ data }) => {
                 currentPage * rowsPerPage + rowsPerPage
               )
             : data
-          ).map((contact, index) => (
-            <TableRow key={index} tabIndex={-1}>
-              <TableCell align="left">'Avatar'</TableCell>
-              <TableCell align="left">{`${contact.name.title} ${contact.name.first} ${contact.name.last}`}</TableCell>
-              <TableCell align="left">{`${contact.dob.date} ${contact.dob.age}`}</TableCell>
-              <TableCell align="left">
-                <CopyData email={contact.email} />
-              </TableCell>
-              <TableCell align="left">
-                <CopyData phone={contact.cell} />
-              </TableCell>
-              <TableCell align="left">{contact.location.city}</TableCell>
-              <TableCell align="right">
-                <NationPreview
-                  backgroundColor={NATIONALITIES[contact.nat].color}
-                >
-                  {NATIONALITIES[contact.nat].name}
-                </NationPreview>
-              </TableCell>
-            </TableRow>
-          ))}
+          ).map((contact, index) => {
+            const { name, dob, email, cell, location, nat, picture } = contact;
+            const locationData = `${location.street.number}, ${location.street.name},
+            ${location.city}, ${location.state}, ${location.postcode}`;
+
+            return (
+              <TableRow key={index} tabIndex={-1}>
+                <TableCell align="left">
+                  <Avatar alt="Avatar" src={picture.thumbnail} />
+                </TableCell>
+                <TableCell align="left">{`${name.title} ${name.first} ${name.last}`}</TableCell>
+                <TableCell align="left">
+                  {`${convertDOB(dob)}, ${dob.age} years`}
+                </TableCell>
+                <TableCell align="left">
+                  <CopyData onCopy={() => copyToClipboard(email)}>
+                    <a href={`mailto:${email}`}>
+                      {`${truncateEmail(email)} ...`}
+                    </a>
+                  </CopyData>
+                </TableCell>
+                <TableCell align="left">
+                  <CopyData onCopy={() => copyToClipboard(cell)}>
+                    <a href={`tel:${phoneInt(cell)}`}>{cell}</a>
+                  </CopyData>
+                </TableCell>
+                <TableCell align="left">
+                  <CopyData
+                    onCopy={() =>
+                      copyToClipboard(location.country + locationData)
+                    }
+                  >
+                    <div>
+                      <span>
+                        <strong>/{location.country}/</strong>
+                      </span>
+                      <div>
+                        <span>{locationData}</span>
+                      </div>
+                    </div>
+                  </CopyData>
+                </TableCell>
+                <TableCell align="right">
+                  <NationPreview backgroundColor={NATIONALITIES[nat].color}>
+                    {NATIONALITIES[nat].name}
+                  </NationPreview>
+                </TableCell>
+              </TableRow>
+            );
+          })}
         </TableBody>
 
         <TableFooter>
@@ -98,15 +134,6 @@ const PaginatedTable = ({ data }) => {
       </Table>
     </TableContainer>
   );
-};
-
-PaginatedTable.propTypes = {
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-    })
-  ),
 };
 
 export default PaginatedTable;
