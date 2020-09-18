@@ -1,7 +1,7 @@
 import ViewTypes from './view.types';
 
 const INITIAL_STATE = {
-    view: 'tiled'
+    view: 'tabular'
 }
 
 const viewReducer = (state = INITIAL_STATE, action) => {

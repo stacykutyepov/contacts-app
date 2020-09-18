@@ -24,9 +24,9 @@ const calculateNationalities = (data, statisticData) => {
 
 
 export const selectStatistics = createSelector([getContacts], contacts => {
-    calculateStatistics(contacts.results, GENDER);
-    calculateNationalities(contacts.results, NATIONALITIES);
-
-    // const male = contacts.results.filter(contact => contact.gender === 'male');
-    return { size: contacts.results.length, gender: genderStatistics, nat: nationStatistics }
+    if (contacts.results) {
+        calculateStatistics(contacts.results, GENDER);
+        calculateNationalities(contacts.results, NATIONALITIES);
+        return { size: contacts.results.length, gender: genderStatistics, nat: nationStatistics }
+    }
 })

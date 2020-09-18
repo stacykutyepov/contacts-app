@@ -5,6 +5,7 @@ import { randomIntegerInRange } from '../../utils/random'
 import ContactsTypes from './contacts.types';
 
 export function* fetchContactsAsync() {
+    console.log('success');
     try {
         const result = yield fetch(`https://randomuser.me/api/?results=${randomIntegerInRange(100, 1000)}`)
         const data = yield result.json()
@@ -16,7 +17,7 @@ export function* fetchContactsAsync() {
 }
 
 export function* fetchContactsStart() {
-    console.log('I am here')
+    console.log('I am here');
     yield takeLatest(ContactsTypes.FETCH_CONTACTS_START, fetchContactsAsync)
 }
 
