@@ -9,13 +9,13 @@ const ViewSwitcher = ({ view, switchView }) => {
   return (
     <div>
       <UpdateSwitcher view={view.view} />
-      <TabularSwitcher
-        view={view.view}
-        onSwitchView={() => switchView("tabular")}
-      />
       <TiledSwitcher
         view={view.view}
         onSwitchView={() => switchView("tiled")}
+      />
+      <TabularSwitcher
+        view={view.view}
+        onSwitchView={() => switchView("tabular")}
       />
     </div>
   );
@@ -24,7 +24,6 @@ const ViewSwitcher = ({ view, switchView }) => {
 const mapStateToProps = (state) => ({
   view: state.view,
 });
-
 const mapDispatchToProps = (dispatch) => ({
   switchView: (view) => dispatch(switchView(view)),
 });

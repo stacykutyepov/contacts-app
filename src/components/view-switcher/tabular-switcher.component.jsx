@@ -1,9 +1,7 @@
 import React from "react";
-import ViewComfyIcon from "@material-ui/icons/ViewComfy";
-
 import { useStyles } from "./view-switcher.styles";
-import Tooltip from "@material-ui/core/Tooltip";
-import IconButton from "@material-ui/core/IconButton";
+import { IconButton, Tooltip } from "@material-ui/core";
+import ViewHeadlineIcon from "@material-ui/icons/ViewHeadline";
 
 const TabularSwitcher = ({ view, onSwitchView }) => {
   const toolTipClasses = useStyles();
@@ -15,7 +13,7 @@ const TabularSwitcher = ({ view, onSwitchView }) => {
   return (
     <CustomTooltip title="Tabular view" placement="top">
       <IconButton aria-label="Tabular view" onClick={onSwitchView}>
-        <ViewComfyIcon
+        <ViewHeadlineIcon
           fontSize="small"
           color={view === "tabular" ? "primary" : "action"}
         />

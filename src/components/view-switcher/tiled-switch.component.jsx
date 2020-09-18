@@ -1,10 +1,7 @@
 import React from "react";
-import ViewComfyIcon from "@material-ui/icons/ViewComfy";
-
 import { useStyles } from "./view-switcher.styles";
-import Tooltip from "@material-ui/core/Tooltip";
-import IconButton from "@material-ui/core/IconButton";
-import ViewHeadlineIcon from "@material-ui/icons/ViewHeadline";
+import ViewComfyIcon from "@material-ui/icons/ViewComfy";
+import { Tooltip, IconButton } from "@material-ui/core";
 
 const TiledSwitcher = ({ view, onSwitchView }) => {
   const toolTipClasses = useStyles();
@@ -16,7 +13,7 @@ const TiledSwitcher = ({ view, onSwitchView }) => {
   return (
     <CustomTooltip title="Tiled view" placement="top">
       <IconButton aria-label="Tiled view" onClick={onSwitchView}>
-        <ViewHeadlineIcon
+        <ViewComfyIcon
           fontSize="small"
           color={view === "tiled" ? "primary" : "action"}
         />
