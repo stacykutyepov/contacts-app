@@ -7,7 +7,7 @@ import viewReducer from './view/view.reducer';
 const persistConfig = {
     key: "root",
     storage,
-    whitelist: ["contacts"]
+    whitelist: ["view"]
 }
 
 const rootReducer = combineReducers({
