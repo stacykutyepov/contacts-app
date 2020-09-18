@@ -1,11 +1,18 @@
 import React from "react";
 import { routes } from "../../constants/routes";
 import { Link } from "react-router-dom";
+import { useStyles } from "./header.styles";
 
 const Header = () => {
+  const classes = useStyles();
   return (
-    <div>
-      <ul>
+    <header className={classes.header}>
+      <ul className={classes.container}>
+        <li>
+          <Link to="./">
+            <img src={"./assets/wezom-logo.svg"} alt="Wezom" />
+          </Link>
+        </li>
         {routes.map((route) => {
           return (
             <li key={route.name}>
@@ -14,7 +21,7 @@ const Header = () => {
           );
         })}
       </ul>
-    </div>
+    </header>
   );
 };
 
