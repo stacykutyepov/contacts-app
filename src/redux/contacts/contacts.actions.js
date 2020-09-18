@@ -11,3 +11,8 @@ export const setContactsSuccess = contacts => ({
 export const setContactsFailure = errorMessage => ({
     type: ContactsTypes.SET_CONTACTS_FAILURE, payload: errorMessage
 })
+
+export const filterByData = (filterType) => ({
+    type: ContactsTypes.FILTER_BY_DATA,
+    payload: filterType
+})
