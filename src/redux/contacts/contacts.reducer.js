@@ -1,11 +1,11 @@
 import ContactsTypes from './contacts.types';
-import { filterByData } from './contacts.utils';
+import { filterByData, deleteFilter } from './contacts.utils';
 
 const INITIAL_STATE = {
     contacts: [],
     error: null,
     isFetching: false,
-    visibilityFilter: 'SHOW_ALL',
+    visibilityFilter: {},
 }
 
 const contactsReducer = (state = INITIAL_STATE, action) => {
@@ -25,6 +25,18 @@ const contactsReducer = (state = INITIAL_STATE, action) => {
         case ContactsTypes.FILTER_BY_DATA:
             return {
                 ...state, visibilityFilter: filterByData(action.payload)
+            }
+        case ContactsTypes.ADD_FILTER:
+            return {
+                ...state, visibilityFilter: { ...state.visibilityFilter, ...action.payload }
+            }
+        case ContactsTypes.DELETE_ALL_FILTERS:
+            return {
+                ...state, visibilityFilter: {}
+            }
+        case ContactsTypes.DELETE_FILTER:
+            return {
+                ...state, visibilityFilter: deleteFilter(state.visibilityFilter, action.payload)
             }
         default:
             return state;

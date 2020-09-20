@@ -1,6 +1,7 @@
 import { createSelector } from "reselect";
 import { GENDER } from "../../constants/gender";
 import { NATIONALITIES } from "../../constants/nationalities";
+import { isEmpty } from '../../utils/isObjEmpty'
 
 const getContacts = (state) => {
     return state.contacts.contacts;
@@ -43,19 +44,12 @@ export const selectStatistics = createSelector([getContacts], (contacts) => {
 export const selectVisibleContacts = createSelector(
     [getVisibilityFilter, selectContacts],
     (visibilityFilter, contacts) => {
-        switch (visibilityFilter) {
-            case "SHOW_ALL":
-                return contacts;
-
-            case "male":
-            case "female":
-            case "indeterminate":
-                return contacts.filter(
-                    (contact) => contact.gender === visibilityFilter
-                );
-
-            default:
-                return contacts.filter((contact) => contact.nat === visibilityFilter);
+        if (isEmpty(visibilityFilter)) {
+            return contacts;
+        } else {
+            return contacts.filter((contact) => {
+                return Object.keys(visibilityFilter).every(key => contact[key] === visibilityFilter[key])
+            })
         }
     }
 );
