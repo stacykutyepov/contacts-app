@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-// import PropTypes from "prop-types";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { firstCharToUpperCase } from "../../utils/firstCharToUpperCase";
+import { isEmpty } from "../../utils/isObjEmpty";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -24,24 +24,22 @@ const Filter = ({
   filterData,
   inputLabel,
   dispatchFilterAction,
+  visibilityFilter,
 }) => {
   const classes = useStyles();
   const [filter, setFilter] = useState("");
-  // const [isOpen, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (isEmpty(visibilityFilter)) {
+      setFilter("");
+    }
+  }, [visibilityFilter]);
 
   const handleChange = (event) => {
     const { value } = event.target;
     setFilter(value);
-    dispatchFilterAction(value);
+    dispatchFilterAction({ [inputId]: value });
   };
-
-  //   const handleClose = () => {
-  //     setOpen(false);
-  //   };
-
-  //   const handleOpen = () => {
-  //     setOpen(true);
-  //   };
 
   return (
     <FormControl variant="outlined" className={classes.formControl}>
@@ -49,16 +47,10 @@ const Filter = ({
       <Select
         labelId={labelId}
         id={labelId}
-        // open={isOpen}
-        // onClose={handleClose}
-        // onOpen={handleOpen}
         value={filter}
         onChange={handleChange}
         label={inputLabel}
       >
-        <MenuItem value="">
-          <em>None</em>
-        </MenuItem>
         {Object.entries(filterData).map(([key, value]) => {
           return (
             <MenuItem key={key} value={key}>
