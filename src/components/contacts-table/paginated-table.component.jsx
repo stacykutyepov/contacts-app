@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { StyledTableCell, useStyles } from "./table.styles";
 import { NATIONALITIES } from "../../constants/nationalities";
+import { formatDOB } from "../../utils/convertDOB";
+import { copyToClipboard } from "../../utils/copyToClipboard";
+import { formatPhone } from "../../utils/formatPhone";
 
 import NationPreview from "../nation-preview/nation-preview.component";
 import CopyData from "../copy-data/copy-data.component";
@@ -32,12 +35,6 @@ const PaginatedTable = ({ data }) => {
   };
 
   const truncateEmail = (email) => email.slice(0, 17);
-  const phoneInt = (phone) => phone.split(/\D/).join("");
-  const copyToClipboard = (data) => navigator.clipboard.writeText(data);
-
-  //Formating date of birth to mm-dd-yyyy
-  const convertDOB = (dob) =>
-    dob.date.slice(5, 10).split("-").join("/") + "/" + dob.date.slice(0, 4);
 
   return (
     <TableContainer component={Paper}>
@@ -62,18 +59,26 @@ const PaginatedTable = ({ data }) => {
               )
             : data
           ).map((contact, index) => {
-            const { name, dob, email, cell, location, nat, picture } = contact;
-            const locationData = `${location.street.number}, ${location.street.name},
-            ${location.city}, ${location.state}, ${location.postcode}`;
+            const {
+              name,
+              dob,
+              email,
+              cell,
+              location,
+              nat,
+              picture,
+              fullName,
+              locationData,
+            } = contact;
 
             return (
               <TableRow key={index} tabIndex={-1}>
                 <TableCell align="left">
                   <Avatar alt="Avatar" src={picture.thumbnail} />
                 </TableCell>
-                <TableCell align="left">{`${name.title} ${name.first} ${name.last}`}</TableCell>
+                <TableCell align="left">{`${name.title} ${fullName}`}</TableCell>
                 <TableCell align="left">
-                  {`${convertDOB(dob)}, ${dob.age} years`}
+                  {`${formatDOB(dob)}, ${dob.age} years`}
                 </TableCell>
                 <TableCell align="left">
                   <CopyData onCopy={() => copyToClipboard(email)}>
@@ -84,7 +89,7 @@ const PaginatedTable = ({ data }) => {
                 </TableCell>
                 <TableCell align="left">
                   <CopyData onCopy={() => copyToClipboard(cell)}>
-                    <a href={`tel:${phoneInt(cell)}`}>{cell}</a>
+                    <a href={`tel:${formatPhone(cell)}`}>{cell}</a>
                   </CopyData>
                 </TableCell>
                 <TableCell align="left">
@@ -120,6 +125,7 @@ const PaginatedTable = ({ data }) => {
               colSpan={3}
               count={data.length}
               rowsPerPage={rowsPerPage}
+              labelRowsPerPage={"People/ page"}
               page={currentPage}
               SelectProps={{
                 inputProps: { "aria-label": "rows per page" },
