@@ -5,11 +5,20 @@ import { randomIntegerInRange } from '../../utils/random'
 import ContactsTypes from './contacts.types';
 
 export function* fetchContactsAsync() {
-    console.log('success');
     try {
         const result = yield fetch(`https://randomuser.me/api/?results=${randomIntegerInRange(100, 1000)}`)
-        const data = yield result.json()
-        yield put(setContactsSuccess(data))
+        const data = yield result.json();
+        const modifiedData = data.results.map((contact, index) => {
+            return {
+                ...contact,
+                contactId: index,
+                fullName: `${contact.name.first} ${contact.name.last}`,
+                locationData: `${contact.location.street.number}, ${contact.location.street.name},
+                ${contact.location.city}, ${contact.location.state}, ${contact.location.postcode}`,
+            }
+        })
+
+        yield put(setContactsSuccess(modifiedData))
 
     } catch (error) {
         yield put(setContactsFailure(error))

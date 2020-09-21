@@ -1,16 +1,43 @@
 import { createSelector } from "reselect";
 import { GENDER } from "../../constants/gender";
 import { NATIONALITIES } from "../../constants/nationalities";
-import { isEmpty } from '../../utils/isObjEmpty'
+import { isEmpty } from '../../utils/isObjEmpty';
+import { deleteKeyFromObj } from '../../utils/deleteKeyFromObj';
 
-const getContacts = (state) => {
-    return state.contacts.contacts;
-};
+const getContacts = (state) => state.contacts.contacts;
+
 const getVisibilityFilter = (state) => state.contacts.visibilityFilter;
 
 export const selectContacts = createSelector(
     [getContacts],
-    (contacts) => contacts.results
+    (contacts) => contacts
+);
+
+export const filterAllContacts = (filter, contacts) => {
+    let contactsArr = [];
+    let filteredFilter = deleteKeyFromObj(filter, 'fullName');
+
+    if (filter.hasOwnProperty('fullName')) {
+        contactsArr = contacts.filter(contact => contact.fullName.includes(filter.fullName));
+    } else {
+        contactsArr = contacts;
+    }
+
+    return contactsArr.filter((contact) => {
+        return Object.keys(filteredFilter).every(key =>
+            contact[key] === filteredFilter[key])
+    })
+}
+
+export const selectVisibleContacts = createSelector(
+    [getVisibilityFilter, selectContacts],
+    (visibilityFilter, contacts) => {
+        if (isEmpty(visibilityFilter)) {
+            return contacts;
+        } else {
+            return filterAllContacts(visibilityFilter, contacts)
+        }
+    }
 );
 
 const genderStatistics = {};
@@ -30,26 +57,13 @@ const calculateNationalities = (data, statisticData) => {
 };
 
 export const selectStatistics = createSelector([getContacts], (contacts) => {
-    if (contacts.results) {
-        calculateStatistics(contacts.results, GENDER);
-        calculateNationalities(contacts.results, NATIONALITIES);
+    if (contacts) {
+        calculateStatistics(contacts, GENDER);
+        calculateNationalities(contacts, NATIONALITIES);
         return {
-            size: contacts.results.length,
+            size: contacts.length,
             gender: genderStatistics,
             nat: nationStatistics,
         };
     }
 });
-
-export const selectVisibleContacts = createSelector(
-    [getVisibilityFilter, selectContacts],
-    (visibilityFilter, contacts) => {
-        if (isEmpty(visibilityFilter)) {
-            return contacts;
-        } else {
-            return contacts.filter((contact) => {
-                return Object.keys(visibilityFilter).every(key => contact[key] === visibilityFilter[key])
-            })
-        }
-    }
-);
