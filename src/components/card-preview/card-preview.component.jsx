@@ -1,12 +1,13 @@
+import PropTypes from "prop-types";
 import React from "react";
+import { useStyles } from "./card-preview.styles";
 import { Link } from "react-router-dom";
 import CopyData from "../copy-data/copy-data.component";
 import NationPreview from "../nation-preview/nation-preview.component";
 import { NATIONALITIES } from "../../constants/nationalities";
 import { formatPhone } from "../../utils/formatPhone";
-import { makeStyles } from "@material-ui/core/styles";
-
 import { copyToClipboard } from "../../utils/copyToClipboard";
+
 import {
   Card,
   CardMedia,
@@ -14,32 +15,6 @@ import {
   Divider,
   CardContent,
 } from "@material-ui/core";
-
-const useStyles = makeStyles({
-  table: {
-    minWidth: "90vw",
-  },
-  paginationCount: {
-    padding: 0,
-  },
-  card: {
-    margin: "10px",
-    textAlign: "left",
-    minHeight: "440px",
-  },
-  media: {
-    height: "180px",
-  },
-  cardContent: {
-    height: "260px",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-  },
-  natContainer: {
-    marginTop: "20px",
-  },
-});
 
 const CardPreview = ({ contact }) => {
   const classes = useStyles();
@@ -99,6 +74,29 @@ const CardPreview = ({ contact }) => {
       </CardContent>
     </Card>
   );
+};
+
+CardPreview.propTypes = {
+  contact: PropTypes.shape({
+    email: PropTypes.string.isRequired,
+    name: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+    }),
+    dob: PropTypes.shape({
+      age: PropTypes.number.isRequired,
+    }),
+    cell: PropTypes.string.isRequired,
+    location: PropTypes.shape({
+      country: PropTypes.string.isRequired,
+    }),
+    nat: PropTypes.string.isRequired,
+    picture: PropTypes.shape({
+      large: PropTypes.string.isRequired,
+    }),
+    locationData: PropTypes.string.isRequired,
+    fullName: PropTypes.string.isRequired,
+    contactId: PropTypes.number.isRequired,
+  }),
 };
 
 export default CardPreview;
