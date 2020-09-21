@@ -1,10 +1,10 @@
 export const routes = [
     {
         name: 'Home',
-        route: './',
+        route: '/',
     },
     {
         name: 'Contacts',
-        route: './contacts',
+        route: '/contacts',
     },
 ]
