@@ -1,24 +1,23 @@
 import React, { useState } from "react";
-import { StyledTableCell, useStyles } from "./table.styles";
-import { tableHeadInfo } from "../../constants/tableHeadInfo";
-import RowPreview from "../row-preview/row-preview.component";
-import PaginationActions from "./pagination-action.component";
-
+import { useStyles } from "../table.styles";
+import PaginationActions from "../pagination-action.component";
+import CardPreview from "../../card-preview/card-preview.component";
 import {
   Table,
   TableBody,
-  TableHead,
+  TableCell,
   TableContainer,
   TableFooter,
   TablePagination,
   TableRow,
   Paper,
+  Grid,
 } from "@material-ui/core";
 
-const PaginatedTable = ({ data }) => {
+const TiledView = ({ data }) => {
   const classes = useStyles();
   const [currentPage, setCurrentPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(6);
 
   const handleChangePage = (event, newPage) => setCurrentPage(newPage);
 
@@ -30,39 +29,39 @@ const PaginatedTable = ({ data }) => {
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="custom pagination table">
-        <TableHead>
-          <TableRow tabIndex={-1}>
-            {tableHeadInfo.map((item) => (
-              <StyledTableCell key={item.name} align={item.align}>
-                {item.name}
-              </StyledTableCell>
-            ))}
-          </TableRow>
-        </TableHead>
-
         <TableBody>
-          {(rowsPerPage > 0
-            ? data.slice(
-                currentPage * rowsPerPage,
-                currentPage * rowsPerPage + rowsPerPage
-              )
-            : data
-          ).map((contact) => {
-            return <RowPreview key={contact.contactId} contact={contact} />;
-          })}
+          <TableRow>
+            <TableCell>
+              <Grid container spaicing={3}>
+                {(rowsPerPage > 0
+                  ? data.slice(
+                      currentPage * rowsPerPage,
+                      currentPage * rowsPerPage + rowsPerPage
+                    )
+                  : data
+                ).map((contact, index) => {
+                  return (
+                    <Grid key={index} item xs={12} sm={6} md={4} lg={4} xl={2}>
+                      <CardPreview contact={contact} />
+                    </Grid>
+                  );
+                })}
+              </Grid>
+            </TableCell>
+          </TableRow>
         </TableBody>
 
         <TableFooter>
           <TableRow>
             <TablePagination
-              rowsPerPageOptions={[10, 20, 50, 100]}
+              rowsPerPageOptions={[6, 12, 36, 48]}
               colSpan={3}
               count={data.length}
               rowsPerPage={rowsPerPage}
               labelRowsPerPage={"People/ page"}
               page={currentPage}
               SelectProps={{
-                inputProps: { "aria-label": "rows per page" },
+                inputProps: { "aria-label": "Cards" },
                 native: true,
               }}
               onChangePage={handleChangePage}
@@ -76,4 +75,4 @@ const PaginatedTable = ({ data }) => {
   );
 };
 
-export default PaginatedTable;
+export default TiledView;

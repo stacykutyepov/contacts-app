@@ -33,7 +33,9 @@ const RowPreview = ({ contact }) => {
           <Avatar alt="Avatar" src={picture.thumbnail} />
         </Link>
       </TableCell>
-      <TableCell align="left">{`${name.title} ${fullName}`}</TableCell>
+      <TableCell align="left">
+        <Link to={`/contacts/${contactId}`}>{`${name.title} ${fullName}`}</Link>
+      </TableCell>
 
       <TableCell align="left">
         {`${formatDOB(dob)}, ${dob.age} years`}

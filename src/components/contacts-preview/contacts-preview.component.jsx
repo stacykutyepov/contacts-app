@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import PaginatedTable from "../contacts-table/paginated-table.component";
-import TiledTable from "../contacts-table/tiled-table/tiled-table.component";
+import PaginatedTable from "../contacts-table-views/tabular-view/tabular-view.component";
+import TiledView from "../contacts-table-views/tiled-view/tiled-view.component";
 import { selectVisibleContacts } from "../../redux/contacts/contacts.selector";
 
 import { createStructuredSelector } from "reselect";
@@ -12,7 +12,7 @@ const ContactsPreview = ({ view, contacts }) => {
     return (
       <div style={{ width: "90vw" }}>
         {view === "tiled" ? (
-          <TiledTable data={contacts} />
+          <TiledView data={contacts} />
         ) : (
           <PaginatedTable data={contacts} />
         )}

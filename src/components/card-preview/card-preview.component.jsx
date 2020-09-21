@@ -42,9 +42,11 @@ const CardPreview = ({ contact }) => {
       </Link>
 
       <CardContent className={classes.cardContent}>
-        <Typography gutterBottom variant="subtitle1" color="primary">
-          {`${name.title} ${fullName} (${dob.age} years)`}
-        </Typography>
+        <Link to={`/contacts/${contactId}`}>
+          <Typography gutterBottom variant="subtitle1" color="primary">
+            {`${name.title} ${fullName} (${dob.age} years)`}
+          </Typography>
+        </Link>
         <Divider variant="middle" />
 
         <CopyData onCopy={() => copyToClipboard(email)}>
