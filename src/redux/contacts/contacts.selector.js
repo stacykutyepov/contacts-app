@@ -13,6 +13,8 @@ export const selectContacts = createSelector(
     (contacts) => contacts
 );
 
+export const selectContactsLength = createSelector([getContacts], contacts => contacts.length)
+
 export const filterAllContacts = (filter, contacts) => {
     let contactsArr = [];
     let filteredFilter = deleteKeyFromObj(filter, 'fullName');
