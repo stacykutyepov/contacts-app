@@ -1,18 +1,23 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchContactsStart } from "../../redux/contacts/contacts.actions";
+import { createStructuredSelector } from "reselect";
+import { selectContactsLength } from "../../redux/contacts/contacts.selector";
+
 import ContactsPreview from "../../components/contacts-preview/contacts-preview.component";
 import { pagesStyles } from "../pages.styles";
 import Statistics from "../../components/statistics/statistics-container.component";
 import ViewSwitcher from "../../components/view-switcher/view-switcher.component";
 import SearchBar from "../../components/search-bar/search-bar.container";
 
-const ContactsPage = ({ fetchContactsStart }) => {
+const ContactsPage = ({ fetchContactsStart, contactsLength }) => {
   const classes = pagesStyles();
 
   useEffect(() => {
-    fetchContactsStart();
-  }, []);
+    if (!contactsLength) {
+      fetchContactsStart();
+    }
+  });
 
   return (
     <div className={classes.container}>
@@ -27,8 +32,12 @@ const ContactsPage = ({ fetchContactsStart }) => {
   );
 };
 
+const mapStateToProps = createStructuredSelector({
+  contactsLength: selectContactsLength,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   fetchContactsStart: () => dispatch(fetchContactsStart()),
 });
 
-export default connect(null, mapDispatchToProps)(ContactsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ContactsPage);

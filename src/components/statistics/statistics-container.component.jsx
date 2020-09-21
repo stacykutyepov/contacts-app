@@ -8,7 +8,6 @@ import GenderStatistic from "./gender.statistic.component";
 
 const Statistics = ({ contacts }) => {
   const classes = useStyles();
-  console.log(contacts);
 
   if (contacts) {
     return (
