@@ -6,5 +6,11 @@ export const pagesStyles = makeStyles({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center'
+    },
+    contacts: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        width: '90vw',
+        alignContent: 'center'
     }
 });
