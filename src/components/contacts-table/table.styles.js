@@ -31,5 +31,6 @@ export const useStyles = makeStyles({
     },
     natContainer: {
         marginTop: "20px"
-    }
+    },
+
 });

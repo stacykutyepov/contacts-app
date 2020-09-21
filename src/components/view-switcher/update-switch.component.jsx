@@ -1,8 +1,7 @@
 import React from "react";
 import RotateLeftIcon from "@material-ui/icons/RotateLeft";
 import { useStyles } from "./view-switcher.styles";
-import Tooltip from "@material-ui/core/Tooltip";
-import IconButton from "@material-ui/core/IconButton";
+import { Tooltip, IconButton } from "@material-ui/core";
 
 const UpdateSwitcher = ({ view }) => {
   const toolTipClasses = useStyles();

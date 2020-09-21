@@ -1,6 +1,6 @@
 import React from "react";
-
 import { useStyles } from "./statistics.styles";
+import { firstCharToUpperCase } from "../../utils/firstCharToUpperCase";
 
 const GenderStatistics = ({ contacts }) => {
   const classes = useStyles();
@@ -22,7 +22,7 @@ const GenderStatistics = ({ contacts }) => {
         {Object.entries(contacts.gender).map(([key, value]) => {
           return (
             <div className={classes.statisticData} key={key}>
-              <p>{key.charAt(0).toUpperCase() + key.slice(1)}</p>
+              <p>{firstCharToUpperCase(key)}</p>
               <span className={classes.number}>{value}</span>
             </div>
           );
