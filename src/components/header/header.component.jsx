@@ -10,7 +10,11 @@ const Header = () => {
       <ul className={classes.container}>
         <li>
           <Link to="/contacts">
-            <img src={"./assets/wezom-logo.svg"} alt="Wezom" />
+            <img
+              className={classes.imgLogo}
+              src={"./assets/w-logo.png"}
+              alt="Wezom"
+            />
           </Link>
         </li>
         {routes.map((route) => {
