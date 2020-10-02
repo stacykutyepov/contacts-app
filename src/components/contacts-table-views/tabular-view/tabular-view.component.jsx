@@ -61,13 +61,12 @@ const PaginatedTable = ({ data }) => {
                 caption: classes.caption,
               }}
               rowsPerPageOptions={[10, 20, 50, 100]}
-              //colSpan={4}
               count={data.length}
               rowsPerPage={rowsPerPage}
               labelRowsPerPage={"People per Page"}
               page={currentPage}
               SelectProps={{
-                inputProps: { "aria-label": "rows per page" },
+                inputProps: { "aria-label": "Rows" },
                 native: true,
               }}
               onChangePage={handleChangePage}

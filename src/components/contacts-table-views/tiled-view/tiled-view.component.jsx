@@ -59,10 +59,9 @@ const TiledView = ({ data }) => {
                 caption: classes.caption,
               }}
               rowsPerPageOptions={[6, 12, 36, 48]}
-              colSpan={3}
               count={data.length}
               rowsPerPage={rowsPerPage}
-              labelRowsPerPage={"People/ page"}
+              labelRowsPerPage={"People per page"}
               page={currentPage}
               SelectProps={{
                 inputProps: { "aria-label": "Cards" },
