@@ -20,7 +20,7 @@ export const filterAllContacts = (filter, contacts) => {
     let filteredFilter = deleteKeyFromObj(filter, 'fullName');
 
     if (filter.hasOwnProperty('fullName')) {
-        contactsArr = contacts.filter(contact => contact.fullName.includes(filter.fullName));
+        contactsArr = contacts.filter(contact => contact.fullName.toLowerCase().includes(filter.fullName.toLowerCase()));
     } else {
         contactsArr = contacts;
     }

@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { isEmpty } from "../../utils/isObjEmpty";
 
-const CheckboxForm = () => {
+const CheckboxForm = ({ visibilityFilter }) => {
   const [checked, setChecked] = useState(false);
+
+  useEffect(() => {
+    if (isEmpty(visibilityFilter)) {
+      setChecked(false);
+    }
+  }, [visibilityFilter]);
 
   const handleChange = (event) => {
     setChecked(event.target.checked);

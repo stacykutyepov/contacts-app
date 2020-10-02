@@ -45,7 +45,7 @@ const SearchBar = ({ visibilityFilter, addFilter, deleteAllFilters }) => {
           />
         </Grid>
         <Grid item xs={12} sm={6} md={2}>
-          <CeckboxForm />
+          <CeckboxForm visibilityFilter={visibilityFilter} />
         </Grid>
         <Grid item xs={12} sm={6} md={1}>
           <ClearButton onClearAll={deleteAllFilters} />

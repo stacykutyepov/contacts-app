@@ -9,7 +9,7 @@ const Header = () => {
     <header className={classes.header}>
       <ul className={classes.container}>
         <li>
-          <Link to="./">
+          <Link to="/contacts">
             <img src={"./assets/wezom-logo.svg"} alt="Wezom" />
           </Link>
         </li>
