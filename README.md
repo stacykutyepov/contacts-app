@@ -1,68 +1,103 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Contacts-App:
+RUSSIAN BELOW &#x2193;
 
-## Available Scripts
+<img src="https://user-images.githubusercontent.com/62475313/93792490-94d04500-fc03-11ea-8371-1ae9af5788ba.png" alt="app-preview"></img>
+<img src="https://user-images.githubusercontent.com/62475313/93792489-9437ae80-fc03-11ea-8528-33665e0167b2.png" alt="statistics-preview"></img>
 
-In the project directory, you can run:
+### What I use:
+React for frontend,
 
-### `npm start`
+Material UI as a UI library ,
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Redux for state management,
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Reselect to implement filter and statistics, avoiding performance issues,
 
-### `npm test`
+Redux-saga for asynchronous store update.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## &#9758; Complete MVP:
 
-### `npm run build`
+### Two settings of data viewing:
+* tabular view
+* tiled view
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Contact's list view:
+* user's birthday must be in US format
+* email must be clickable using copy
+* phone must be clickable with copy
+* address must be in the format: / country / street number street name, city, state zip code
+street number street name, city, state code
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Ability to filter data: (Reselect)
+* by full name;
+* by gender;
+* by nationality;
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Data Statistics: (Reselect)
+* collection size
+* number of men, women and indetermitate
+* who is predominant
+* number of contacts for each nationality
 
-### `npm run eject`
+#### More about filter: 
+* Filter happens without manual form submit.
+* Clearing the filter returns the collection to its original state.
+* The entire collection gets filtered.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#### What else is there?
+By clicking on the user's name or avatar, there is a transition to the page for viewing user data
+When returning from the view page to the contact list page, the previously selected filter, sorting and pagination state must be saved and applied.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### What I would like to improve in my application:
+Mobile version requires adjustments;
+Error message when returning an error from an API request;
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Сообщение к заданию:
+Задание заняло выполнить 18 часов.
+Выполнила пункт 3 и 4.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Я использовала 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+React, 
+Material UI, 
+Redux для стейт менеджмента,
+Reselect для фильтра ,
+Redux-saga для асинхронного получения данных.
 
-### Code Splitting
+## Выполнила пункты:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+### Два режима просмотра данных: 
+* табличный вид 
+* плиточный вид 
 
-### Analyzing the Bundle Size
+### Отображение списка контактов:
+* день рождения пользователя должен быть в американском формате 
+* email должен быть кликабельным с возможностью скопировать 
+* телефон должен быть кликабельным с возможностью скопировать 
+* адрес должен быть в формате:   /страна/ номер улицы название улицы, город, штат индекс 
+номер улицы название улицы, город, штат индекс 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### Возможность фильтровать данные: (Reselect)
+* по полному имени;
+* по половому признаку;
+* по национальности; 
 
-### Making a Progressive Web App
+### Статистика по данным:  (Reselect)
+* размер коллекции 
+* кол-во мужчин, женщин и неопределившихся 
+* вывести кого больше
+* кол-во контактов по каждой национальности 
+По клику на имя или аватар пользователя есть переход на страницу просмотра данных пользователя 
+При возврате со страницы просмотра на страницу списка контактов, должно быть сохранено и применено ранее выбранное состояние фильтра, сортировки и пагинации.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+#### Подробнее о фильтре: (Reselect)
+* Фильтрация происходит без ручной отправки формы.
+* Очистка фильтра возвращает коллекцию к изначальному состоянию.
+* Фильтруется вся коллекция.
 
-### Advanced Configuration
+#### Чтобы я хотела улучшить в своём приложении:
+Мобильная версия требует корректировок;
+Сообщение об ошибке при возвращении ошибки из запроса c API;
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
