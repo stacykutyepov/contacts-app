@@ -17,7 +17,10 @@ export const useStyles = makeStyles({
     },
     containerRow: {
         display: 'flex',
-        maxWidth: '600px'
+        maxWidth: '600px',
+        ['@media (max-width:480px)']: { // eslint-disable-line no-useless-computed-key
+            flexDirection: 'column'
+        }
     },
     number: {
         fontSize: '1.5rem'

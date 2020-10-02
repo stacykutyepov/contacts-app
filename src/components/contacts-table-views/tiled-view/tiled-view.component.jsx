@@ -54,6 +54,7 @@ const TiledView = ({ data }) => {
         <TableFooter>
           <TableRow>
             <TablePagination
+              classes={{ toolbar: classes.tablePagination }}
               rowsPerPageOptions={[6, 12, 36, 48]}
               colSpan={3}
               count={data.length}

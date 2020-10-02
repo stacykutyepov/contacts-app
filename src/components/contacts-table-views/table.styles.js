@@ -32,5 +32,13 @@ export const useStyles = makeStyles({
     natContainer: {
         marginTop: "20px"
     },
-
+    tablePagination: {
+        width: "70vw",
+        ['@media (max-width:480px)']: { // eslint-disable-line no-useless-computed-key
+            paddingTop: '20px',
+            display: 'flex',
+            flexDirection: 'column',
+            width: '90%',
+        }
+    }
 });

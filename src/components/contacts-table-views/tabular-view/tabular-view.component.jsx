@@ -17,6 +17,7 @@ import {
 
 const PaginatedTable = ({ data }) => {
   const classes = useStyles();
+
   const [currentPage, setCurrentPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -55,6 +56,7 @@ const PaginatedTable = ({ data }) => {
         <TableFooter>
           <TableRow>
             <TablePagination
+              classes={{ toolbar: classes.tablePagination }}
               rowsPerPageOptions={[10, 20, 50, 100]}
               colSpan={3}
               count={data.length}
