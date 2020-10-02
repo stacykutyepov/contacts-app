@@ -56,12 +56,15 @@ const PaginatedTable = ({ data }) => {
         <TableFooter>
           <TableRow>
             <TablePagination
-              classes={{ toolbar: classes.tablePagination }}
+              classes={{
+                toolbar: classes.tablePagination,
+                caption: classes.caption,
+              }}
               rowsPerPageOptions={[10, 20, 50, 100]}
-              colSpan={3}
+              //colSpan={4}
               count={data.length}
               rowsPerPage={rowsPerPage}
-              labelRowsPerPage={"People/ page"}
+              labelRowsPerPage={"People per Page"}
               page={currentPage}
               SelectProps={{
                 inputProps: { "aria-label": "rows per page" },

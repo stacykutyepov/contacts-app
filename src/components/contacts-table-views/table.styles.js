@@ -33,12 +33,17 @@ export const useStyles = makeStyles({
         marginTop: "20px"
     },
     tablePagination: {
-        width: "70vw",
+        width: "400px",
         ['@media (max-width:480px)']: { // eslint-disable-line no-useless-computed-key
-            paddingTop: '20px',
-            display: 'flex',
-            flexDirection: 'column',
-            width: '90%',
+            padding: '20px 0px',
+            width: '100px',
+            position: 'fixed'
+        }
+    },
+    caption: {
+        ['@media (max-width:480px)']: { // eslint-disable-line no-useless-computed-key
+            display: 'none'
         }
     }
+
 });
