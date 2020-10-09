@@ -1,19 +1,17 @@
 ## Contacts-App:
-RUSSIAN BELOW &#x2193;
 
-<img src="https://user-images.githubusercontent.com/62475313/93792490-94d04500-fc03-11ea-8371-1ae9af5788ba.png" alt="app-preview"></img>
-<img src="https://user-images.githubusercontent.com/62475313/93792489-9437ae80-fc03-11ea-8528-33665e0167b2.png" alt="statistics-preview"></img>
+<img src="https://user-images.githubusercontent.com/62475313/95621512-d5bbbc80-0a3f-11eb-817e-0d48d2c536e6.png" alt="app-preview"></img>
 
-### What I use:
-React for frontend,
+### STACK:
+**React** for frontend,
 
-Material UI as a UI library ,
+**Material UI** as a UI library ,
 
-Redux for state management,
+**Redux** for state management,
 
-Reselect to implement filter and statistics, avoiding performance issues,
+**Reselect** to implement filter and statistics, avoiding performance issues,
 
-Redux-saga for asynchronous store update.
+**Redux-saga** for asynchronous store update.
 
 ## &#9758; Complete MVP:
 
