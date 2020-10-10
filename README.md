@@ -15,6 +15,9 @@
 
 ## &#9758; Complete MVP:
 
+<img src="https://user-images.githubusercontent.com/62475313/95629461-fdb21c80-0a4d-11eb-8cfe-0439f0796cb8.png" alt="Contacts-app" border="0" width="100%">
+
+
 ### Two settings of data viewing:
 * tabular view
 * tiled view
