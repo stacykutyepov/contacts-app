@@ -45,5 +45,4 @@ export const useStyles = makeStyles({
             display: 'none'
         }
     }
-
 });

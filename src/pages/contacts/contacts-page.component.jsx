@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { fetchContactsStart } from "../../redux/contacts/contacts.actions";
 import { createStructuredSelector } from "reselect";
 import { selectContactsLength } from "../../redux/contacts/contacts.selector";
-
 import ContactsPreview from "../../components/contacts-preview/contacts-preview.component";
 import { pagesStyles } from "../pages.styles";
 import Statistics from "../../components/statistics/statistics-container.component";
